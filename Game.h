@@ -13,6 +13,9 @@
 #define WINDOW_HEIGHT	468
 #define MAX_KEYS		256
 #define MAX_SHOTS		32
+#define ROW 7
+#define COLUMN 8
+#define SQUARE_SIZE 60 //tamaño de las celdas
 
 class Game
 {
