@@ -37,13 +37,8 @@ bool Game::Init()
 	}
 
 	//Init variables
-	//size: 104x82
-	Player.Init(20, WINDOW_HEIGHT >> 1, 104, 82, 5);
-	//idx_shot = 0;
-	int w;
-	SDL_QueryTexture(img_background, NULL, NULL, &w, NULL);
-	Scene.Init(0, 0, w, WINDOW_HEIGHT, 4);
-	//god_mode = false;
+	Player.Init(20, 20, 32, 32, 5);
+	Scene.Init(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
 
 	return true;
 }
@@ -111,28 +106,17 @@ bool Game::Update()
 
 
 
-	/* Código de muestra del R-type mostrado en clase
-	int fx = 0, fy = 0;
 	if (keys[SDL_SCANCODE_ESCAPE] == KEY_DOWN)	return true;
-	if (keys[SDL_SCANCODE_F1] == KEY_DOWN)		god_mode = !god_mode;
-	if (keys[SDL_SCANCODE_UP] == KEY_REPEAT)	fy = -1;
-	if (keys[SDL_SCANCODE_DOWN] == KEY_REPEAT)	fy = 1;
-	if (keys[SDL_SCANCODE_LEFT] == KEY_REPEAT)	fx = -1;
-	if (keys[SDL_SCANCODE_RIGHT] == KEY_REPEAT)	fx = 1;
+	if (keys[SDL_SCANCODE_F1] == KEY_DOWN)		{}
+	if (keys[SDL_SCANCODE_UP] == KEY_REPEAT)	{}
+	if (keys[SDL_SCANCODE_DOWN] == KEY_REPEAT)	{}
+	if (keys[SDL_SCANCODE_LEFT] == KEY_REPEAT)	{}
+	if (keys[SDL_SCANCODE_RIGHT] == KEY_REPEAT)	{}
 	if (keys[SDL_SCANCODE_SPACE] == KEY_DOWN)
 	{
-		int x, y, w, h;
-		Player.GetRect(&x, &y, &w, &h);
-		//size: 56x20
-		//offset from player: dx, dy = [(29, 3), (29, 59)]
-		Shots[idx_shot].Init(x + 29, y + 3, 56, 20, 10);
-		idx_shot++;
-		idx_shot %= MAX_SHOTS;
-		Shots[idx_shot].Init(x + 29, y + 59, 56, 20, 10);
-		idx_shot++;
-		idx_shot %= MAX_SHOTS;
+		
 	}
-	/**/
+	
 
 	//Logic
 	
@@ -140,27 +124,7 @@ bool Game::Update()
 
 
 
-
-
-	/* Código de muestra del R-type mostrado en clase
-	
-	//Scene scroll
-	Scene.Move(-1, 0);
-	if (Scene.GetX() <= -Scene.GetWidth())	Scene.SetX(0);
-
-	//Player update
-	Player.Move(fx, fy);
-	//Shots update
-	for (int i = 0; i < MAX_SHOTS; ++i)
-	{
-		if (Shots[i].IsAlive())
-		{
-			Shots[i].Move(1, 0);
-			if (Shots[i].GetX() > WINDOW_WIDTH)	Shots[i].ShutDown();
-		}
-	}
-
-	/**/
+	tablero.compruebaGanador();
 		
 	return false;
 }

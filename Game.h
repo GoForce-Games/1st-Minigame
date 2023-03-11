@@ -37,12 +37,7 @@ private:
 
 	Tablero tablero;
 
-	Entity Player, 
-		//Shots[MAX_SHOTS],
-		Scene;
-	//int idx_shot; // No estamos haciendo un shooter
-
-	// bool god_mode; // God mode en un juego de mesa?
+	Entity Player, Scene;
 
 	enum KEY_STATE { KEY_IDLE, KEY_DOWN, KEY_REPEAT, KEY_UP	};
 	KEY_STATE keys[MAX_KEYS]; 
