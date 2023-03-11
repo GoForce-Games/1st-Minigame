@@ -128,8 +128,8 @@ bool Game::Update()
 
 	//Logic
 	//Scene scroll
-	Scene.Move(-1, 0);
-	if (Scene.GetX() <= -Scene.GetWidth())	Scene.SetX(0);
+	/*Scene.Move(-1, 0);
+	if (Scene.GetX() <= -Scene.GetWidth())	Scene.SetX(0);*/
 	//Player update
 	Player.Move(fx, fy);
 	//Shots update
