@@ -1,5 +1,6 @@
-#include "Game.h"
 #include <math.h>
+#include "Game.h"
+#include "Tablero.h"
 
 Game::Game() {}
 Game::~Game(){}
@@ -30,17 +31,19 @@ bool Game::Init()
 		keys[i] = KEY_IDLE;
 
 	//Load images
-	if (!LoadImages())
+	if (!LoadImages()) {
+		SDL_Log("No se pudieron cargar las imágenes.");
 		return false;
+	}
 
 	//Init variables
 	//size: 104x82
 	Player.Init(20, WINDOW_HEIGHT >> 1, 104, 82, 5);
-	idx_shot = 0;
+	//idx_shot = 0;
 	int w;
 	SDL_QueryTexture(img_background, NULL, NULL, &w, NULL);
 	Scene.Init(0, 0, w, WINDOW_HEIGHT, 4);
-	god_mode = false;
+	//god_mode = false;
 
 	return true;
 }
@@ -105,6 +108,10 @@ bool Game::Update()
 	if (!Input())	return true;
 
 	//Process Input
+
+
+
+	/* Código de muestra del R-type mostrado en clase
 	int fx = 0, fy = 0;
 	if (keys[SDL_SCANCODE_ESCAPE] == KEY_DOWN)	return true;
 	if (keys[SDL_SCANCODE_F1] == KEY_DOWN)		god_mode = !god_mode;
@@ -125,11 +132,22 @@ bool Game::Update()
 		idx_shot++;
 		idx_shot %= MAX_SHOTS;
 	}
+	/**/
 
 	//Logic
+	
+
+
+
+
+
+
+	/* Código de muestra del R-type mostrado en clase
+	
 	//Scene scroll
-	/*Scene.Move(-1, 0);
-	if (Scene.GetX() <= -Scene.GetWidth())	Scene.SetX(0);*/
+	Scene.Move(-1, 0);
+	if (Scene.GetX() <= -Scene.GetWidth())	Scene.SetX(0);
+
 	//Player update
 	Player.Move(fx, fy);
 	//Shots update
@@ -141,6 +159,8 @@ bool Game::Update()
 			if (Shots[i].GetX() > WINDOW_WIDTH)	Shots[i].ShutDown();
 		}
 	}
+
+	/**/
 		
 	return false;
 }
@@ -153,31 +173,12 @@ void Game::Draw()
 	//Clear rendering target
 	SDL_RenderClear(Renderer);
 
-	//God mode uses red wireframe rectangles for physical objects
-	if (god_mode) SDL_SetRenderDrawColor(Renderer, 192, 0, 0, 255);
-
 	//Draw scene
 	Scene.GetRect(&rc.x, &rc.y, &rc.w, &rc.h);
 	SDL_RenderCopy(Renderer, img_background, NULL, &rc);
-	rc.x += rc.w;
-	SDL_RenderCopy(Renderer, img_background, NULL, &rc);
-	
-	//Draw player
-	Player.GetRect(&rc.x, &rc.y, &rc.w, &rc.h);
-	SDL_RenderCopy(Renderer, img_player, NULL, &rc);
-	if (god_mode) SDL_RenderDrawRect(Renderer, &rc);
-	
-	//Draw shots
-	for (int i = 0; i < MAX_SHOTS; ++i)
-	{
-		if (Shots[i].IsAlive())
-		{
-			Shots[i].GetRect(&rc.x, &rc.y, &rc.w, &rc.h);
-			SDL_RenderCopy(Renderer, img_shot, NULL, &rc);
-			if (god_mode) SDL_RenderDrawRect(Renderer, &rc);
-		}
-	}
 
+	tablero.dibujaTablero(Renderer);
+	
 	//Update screen
 	SDL_RenderPresent(Renderer);
 

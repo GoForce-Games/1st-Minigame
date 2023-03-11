@@ -8,14 +8,13 @@
 
 
 #include "Entity.h"
+#include "Tablero.h"
 
-#define WINDOW_WIDTH	535
-#define WINDOW_HEIGHT	468
+#define WINDOW_WIDTH	320
+#define WINDOW_HEIGHT	320
+#define WINDOW_SCALE	2	// 1 = 320x320, 2 = 640x640, etc.
+
 #define MAX_KEYS		256
-#define MAX_SHOTS		32
-#define ROW 7
-#define COLUMN 8
-#define SQUARE_SIZE 60 //tamaño de las celdas
 
 class Game
 {
@@ -36,10 +35,14 @@ private:
 	SDL_Renderer *Renderer;
 	SDL_Texture *img_background, *img_player, *img_shot;
 
-	Entity Player, Shots[MAX_SHOTS], Scene;
-	int idx_shot;
+	Tablero tablero;
 
-	bool god_mode;
+	Entity Player, 
+		//Shots[MAX_SHOTS],
+		Scene;
+	//int idx_shot; // No estamos haciendo un shooter
+
+	// bool god_mode; // God mode en un juego de mesa?
 
 	enum KEY_STATE { KEY_IDLE, KEY_DOWN, KEY_REPEAT, KEY_UP	};
 	KEY_STATE keys[MAX_KEYS]; 
