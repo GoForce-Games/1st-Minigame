@@ -12,8 +12,8 @@
 #include "Entity.h"
 #include "Tablero.h"
 
-#define WINDOW_WIDTH	320
-#define WINDOW_HEIGHT	320
+#define WINDOW_WIDTH	640
+#define WINDOW_HEIGHT	640
 #define WINDOW_SCALE	2	// 1 = 320x320, 2 = 640x640, etc.
 
 #define MAX_KEYS		256
