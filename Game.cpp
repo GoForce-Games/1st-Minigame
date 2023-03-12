@@ -94,7 +94,7 @@ bool Game::Input()
 		else
 			keys[i] = (keys[i] == KEY_REPEAT || keys[i] == KEY_DOWN) ? KEY_UP : KEY_IDLE;
 	}
-
+	
 	return true;
 }
 bool Game::Update()

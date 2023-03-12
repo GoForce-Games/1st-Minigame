@@ -10,12 +10,12 @@ int main(int argc, char* args[])
 {
     Game game;
     if (!game.Init()) return -1;
-    bool end = false; 
+    bool end = false;
     while (!end)
     {
-        
+
         end = game.Update();
-        game.Draw(); 
+        game.Draw();
         SDL_Init(SDL_INIT_AUDIO);
         SDL_AudioSpec wavSpec;
         Uint32 wavLength;
@@ -32,8 +32,9 @@ int main(int argc, char* args[])
         SDL_CloseAudioDevice(deviceId);
         SDL_FreeWAV(wavBuffer);
         SDL_Quit();
-    }  
-    return 0;
+       
+        return 0;
+    }
 }
 
 
