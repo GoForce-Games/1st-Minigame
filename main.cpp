@@ -13,9 +13,8 @@ int main(int argc, char* args[])
         end = game.Update();
         //game.ProcessAudio();
         game.Draw();
-       
-        return 0;
     }
+    return 0;
 }
 
 
