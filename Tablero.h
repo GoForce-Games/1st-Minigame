@@ -24,12 +24,12 @@ enum class turn {
 
 class Tablero
 {
-private:
+public:
 	uint puntosJ1 = 0, puntosJ2 = 0;
 	turn turnoActual;
-	cell_state tablero[TAMAÑO_TABLERO][TAMAÑO_TABLERO];
+	cell_state tablero[TAMAÑO_TABLERO][TAMAÑO_TABLERO]; // tablero[fila][columna]
+	uint cursor = 0;
 
-public:
 	Tablero();
 	~Tablero();
 
@@ -37,7 +37,7 @@ public:
 
 	// Comprueba cual es la primera fila en la que hay una ficha e intenta colocar la nueva en la anterior
 	// Hay que poner un if que compruebe el turno actual
-	void ponerFicha(const uint x, const uint y, const cell_state nuevoEstado);
+	bool ponerFicha(const uint x, const cell_state nuevoEstado);
 
 	uint getPuntosJ1() const;
 	uint getPuntosJ2() const;
