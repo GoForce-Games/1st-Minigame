@@ -2,15 +2,28 @@
 #include "Tablero.h"
 
 
-cell_state Tablero::getFicha(const uint x, const uint y) const
+cell_state Tablero::getFicha(const uint fila, const uint columna) const
 {
-	if (x >= TAMAÑO_TABLERO || y >= TAMAÑO_TABLERO) return cell_state::INVALID;
-	else return tablero[x][y];
+	if (fila >= TAMAÑO_TABLERO || columna >= TAMAÑO_TABLERO) return cell_state::INVALID;
+	else return tablero[fila][columna];
 }
 
-void Tablero::ponerFicha(const uint x, const uint y, const cell_state nuevoEstado)
+bool Tablero::ponerFicha(const uint columna, const cell_state nuevoEstado)
 {
+	if (tablero[0][columna] != cell_state::EMPTY) return false;
 
+	int fila = -1;
+
+	for (size_t i = 0; i < TAMAÑO_TABLERO; i++)
+	{
+		if (tablero[i][columna] == cell_state::EMPTY) fila = i;
+	}
+	
+	// Como hay un return aqui no hace falta poner un else, ya que al codigo de mas abajo solo se llegara si NO se cumple el if
+	if (fila == -1) return false; 
+
+	tablero[fila][columna] = nuevoEstado;
+	return true;
 }
 
 Tablero::Tablero()
@@ -27,7 +40,12 @@ Tablero::Tablero()
 
 Tablero::~Tablero()
 {
-
+	// Para borrar matrices multidimensionales hay que hacerlo asi (un bucle por cada dimension mas alla de 1)
+	for (size_t i = 0; i < TAMAÑO_TABLERO; i++)
+	{
+		delete[] tablero[i];
+	}
+	delete[] tablero;
 }
 
 uint Tablero::getPuntosJ1() const
