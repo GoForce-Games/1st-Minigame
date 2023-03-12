@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "SDL/include/SDL.h"
+#include "moduleAudio.h"
 
 
 int main(int argc, char* args[])
@@ -13,6 +14,8 @@ int main(int argc, char* args[])
         end = game.Update();
         //game.ProcessAudio();
         game.Draw();
+        playMusic();
+
     }
     return 0;
 }
