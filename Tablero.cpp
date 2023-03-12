@@ -59,7 +59,13 @@ uint Tablero::getPuntosJ2() const
 
 void Tablero::añadirPunto(const ushort jugador)
 {
-
+	switch (jugador)
+	{
+	case 1: puntosJ1++; break;
+	case 2: puntosJ2++; break;
+	default:
+		break;
+	}
 }
 
 void Tablero::dibujaTablero(const SDL_Renderer* renderer)
